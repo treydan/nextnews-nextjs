@@ -1,14 +1,13 @@
 import Link from "next/link";
 
-const MainHeader = () => {
+export default function MainHeader() {
   return (
-    <header>
-      <h1>NextNews</h1>
+    <header id="main-header">
+      <div id="logo">
+        <Link href="/">NextNews</Link>
+      </div>
       <nav>
         <ul>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
           <li>
             <Link href="/news">News</Link>
           </li>
@@ -16,6 +15,4 @@ const MainHeader = () => {
       </nav>
     </header>
   );
-};
-
-export default MainHeader;
+}
