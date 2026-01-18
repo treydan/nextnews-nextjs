@@ -10,17 +10,6 @@ import NewsList from "@/components/news-list";
 const FilteredNewsPage = ({ params: { filter } }) => {
   const [selectedYear, selectedMonth] = filter ?? [];
 
-  let newsItems;
-  let links = getAvailableNewsYears();
-
-  if (selectedMonth) {
-    newsItems = getNewsForYearAndMonth(selectedYear, selectedMonth);
-    links = [];
-  } else if (selectedYear) {
-    newsItems = getNewsForYear(selectedYear);
-    links = getAvailableNewsMonths(selectedYear);
-  }
-
   if (
     (selectedYear && !getAvailableNewsYears().includes(+selectedYear)) ||
     (selectedMonth &&
@@ -28,6 +17,16 @@ const FilteredNewsPage = ({ params: { filter } }) => {
     filter?.length > 2
   ) {
     throw new Error("Invalid filter.");
+  }
+
+  let newsItems;
+  let links = getAvailableNewsYears();
+  if (selectedMonth) {
+    newsItems = getNewsForYearAndMonth(selectedYear, selectedMonth);
+    links = [];
+  } else if (selectedYear) {
+    newsItems = getNewsForYear(selectedYear);
+    links = getAvailableNewsMonths(selectedYear);
   }
 
   let newsContent = <p>No news found for the selected period</p>;
